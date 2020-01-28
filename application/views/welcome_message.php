@@ -66,24 +66,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</style>
 </head>
 <body>
-
+<?php 
+	if ($this->session->flashdata())  {
+		echo $this->session->flashdata('message');
+	} 
+?>
 <div id="container">
 	<h1>Welcome to CodeIgniter!</h1>
 
 	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+		<form action="<?= base_url('Welcome/login') ?>" method="post">
+			<input type="text" name="nama" placeholder="Masukkan Nama"><br>
+			<?= form_error('nama') ?>
+			<select name="no_meja">
+				<?php foreach($meja as $m) : ?>
+					<option value="<?= $m->id_meja ?>"><?= $m->no_meja ?></option>
+				<?php endforeach ?>
+				</select><br>
+			<input type="password" name="password" placeholder="Masukkan password Meja"><br>
+			<?= form_error('nama') ?>
+			<button type="submit">Kirim</button>
+		</form>
 	</div>
-
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
-
+<!-- <?php 
+	foreach ($join->result_object() as $j ) {
+		echo $j->nama;
+		echo $j->no_meja;
+		echo $j->password;
+		echo $j->status;
+	}
+?> -->
 </body>
 </html>
