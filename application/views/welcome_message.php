@@ -80,11 +80,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?= form_error('nama') ?>
 			<select name="no_meja">
 				<?php foreach($meja as $m) : ?>
-					<option value="<?= $m->id_meja ?>"><?= $m->no_meja ?></option>
+					<option value="<?= $m->no_meja ?>"><?= $m->no_meja ?></option>
 				<?php endforeach ?>
 				</select><br>
 			<input type="password" name="password" placeholder="Masukkan password Meja"><br>
-			<?= form_error('nama') ?>
+			<?= form_error('password') ?>
 			<button type="submit">Kirim</button>
 		</form>
 	</div>

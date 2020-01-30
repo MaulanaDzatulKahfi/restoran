@@ -22,6 +22,9 @@ class Welcome extends CI_Controller {
 	{
 		parent::__construct();	
 		$this->load->model('M_crud');
+		if ($this->session->userdata('no_meja') !== null) {
+			redirect('Pelanggan');
+		}
 	}
 	public function index()
 	{
@@ -44,34 +47,27 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome_message', $data);
 		}else{
 			// $join = $this->M_crud->tampiljoin('pelanggan','meja','id_meja')->row();
-			$no_meja = $this->input->post('no_meja'); 
-			$nama = $this->input->post('nama');
-			$password = $this->input->post('password');
+			$no_meja = htmlspecialchars($this->input->post('no_meja'), true); 
+			$nama = htmlspecialchars($this->input->post('nama'), true);
+			$password = htmlspecialchars($this->input->post('password'), true);
 			$u = $this->db->get_where('meja', ['no_meja' => $no_meja])->row();
 			//jika password meja benar
 			if (password_verify($password, $u->password)) {
 				$data = [
 					'no_meja' => $u->no_meja
 				];
-				$this->db->where(['id_meja' => $no_meja])->update('meja', ['status' => 'aktif']);
+				$this->db->where(['no_meja' => $no_meja])->update('meja', ['status' => 'aktif']);
 				$this->session->set_userdata($data);
-				echo 'ok, anda berhasil login';
+				redirect('Pelanggan');
 			}else{
 				$this->session->set_flashdata('message', 'Password Meja salah!!!');
 				redirect('Welcome');
 			}
 			$data =  [
-				'id_meja' => $no_meja,
+				'no_meja' => $no_meja,
 				'nama' => $nama
 			];
 			$this->db->insert('pelanggan', $data);
 		}
-	}
-	public function logout()
-	{
-		$no_meja = $this->session->userdata('no_meja');
-		$this->db->where(['id_meja' => $no_meja])->update('meja', ['status' => 'tidak aktif']);
-		session_destroy();
-		redirect('welcome');
 	}
 }
