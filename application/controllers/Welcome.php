@@ -23,7 +23,7 @@ class Welcome extends CI_Controller {
 		parent::__construct();	
 		$this->load->model('M_crud');
 		if ($this->session->userdata('no_meja') !== null) {
-			redirect('Pelanggan');
+			redirect('Menu');
 		}
 	}
 	public function index()

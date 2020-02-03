@@ -8,6 +8,6 @@
 </head>
 <body>
 	ok anda berhasil login
-	<a href="<?= base_url('Pelanggan/logout') ?>">logout</a>
+	<a href="<?= base_url('Menu/logout') ?>">logout</a>
 </body>
 </html>
