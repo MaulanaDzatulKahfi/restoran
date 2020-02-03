@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pelanggan extends CI_Controller {
+class Menu extends CI_Controller {
 
 	public function __construct()
 	{
@@ -13,7 +13,7 @@ class Pelanggan extends CI_Controller {
 	}
 	public function index()
 	{
-		$this->load->view('Pelanggan/home');
+		$this->load->view('menu/home');
 	}
 	public function logout()
 	{
