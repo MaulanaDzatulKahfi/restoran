@@ -89,13 +89,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</form>
 	</div>
 </div>
-<!-- <?php 
-	foreach ($join->result_object() as $j ) {
-		echo $j->nama;
-		echo $j->no_meja;
-		echo $j->password;
-		echo $j->status;
-	}
-?> -->
 </body>
 </html>
