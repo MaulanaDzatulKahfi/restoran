@@ -58,7 +58,7 @@ class Welcome extends CI_Controller {
 				];
 				$this->db->where(['no_meja' => $no_meja])->update('meja', ['status' => 'aktif']);
 				$this->session->set_userdata($data);
-				redirect('Pelanggan');
+				redirect('Menu');
 			}else{
 				$this->session->set_flashdata('message', 'Password Meja salah!!!');
 				redirect('Welcome');
